@@ -7,7 +7,11 @@
 
 import Foundation
 
-struct PaginatedResponse<T: Codable> {
+struct PaginatedResponse<T: Codable>: Identifiable, Codable {
+    
+    var id: Int {
+        get { return self.page }
+    }
     
     let page: Int
     let totalPages: Int

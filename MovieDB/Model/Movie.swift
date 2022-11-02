@@ -18,6 +18,6 @@ struct Movie: Identifiable, Codable {
     let backdropPath: String?
     let posterPath: String?
     
-    let voteAverage: Int?
-    let releaseDate: Date?
+    let voteAverage: Double?
+    let releaseDate: String?
 }

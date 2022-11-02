@@ -20,6 +20,8 @@
 		53114A732912A09600390C9D /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53114A722912A09600390C9D /* Movie.swift */; };
 		53114A772912A1D400390C9D /* Http.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53114A762912A1D400390C9D /* Http.swift */; };
 		53114A7A2912A4DF00390C9D /* HttpContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53114A792912A4DF00390C9D /* HttpContract.swift */; };
+		53114A7F2912B07600390C9D /* ApiContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53114A7E2912B07600390C9D /* ApiContract.swift */; };
+		53114A932912BE5B00390C9D /* MovieApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53114A922912BE5B00390C9D /* MovieApi.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +58,8 @@
 		53114A722912A09600390C9D /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		53114A762912A1D400390C9D /* Http.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Http.swift; sourceTree = "<group>"; };
 		53114A792912A4DF00390C9D /* HttpContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpContract.swift; sourceTree = "<group>"; };
+		53114A7E2912B07600390C9D /* ApiContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiContract.swift; sourceTree = "<group>"; };
+		53114A922912BE5B00390C9D /* MovieApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieApi.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,7 +110,7 @@
 		53114A3529129DED00390C9D /* MovieDB */ = {
 			isa = PBXGroup;
 			children = (
-				53114A6229129E2F00390C9D /* Services */,
+				53114A7B2912AFFA00390C9D /* Internal */,
 				53114A6F2912A00D00390C9D /* Model */,
 				53114A6029129E2400390C9D /* View */,
 				53114A3629129DED00390C9D /* MovieDBApp.swift */,
@@ -157,19 +161,10 @@
 			path = Screens;
 			sourceTree = "<group>";
 		};
-		53114A6229129E2F00390C9D /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				53114A782912A3D700390C9D /* Http */,
-				53114A6329129E4700390C9D /* Contract */,
-				53114A6C29129EF000390C9D /* Repository */,
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
 		53114A6329129E4700390C9D /* Contract */ = {
 			isa = PBXGroup;
 			children = (
+				53114A7E2912B07600390C9D /* ApiContract.swift */,
 				53114A792912A4DF00390C9D /* HttpContract.swift */,
 				53114A6429129E7C00390C9D /* MovieContract.swift */,
 			);
@@ -199,6 +194,57 @@
 				53114A762912A1D400390C9D /* Http.swift */,
 			);
 			path = Http;
+			sourceTree = "<group>";
+		};
+		53114A7B2912AFFA00390C9D /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				53114A6329129E4700390C9D /* Contract */,
+				53114A802912B3A600390C9D /* Storage */,
+				53114A7C2912B00300390C9D /* Network */,
+			);
+			path = Internal;
+			sourceTree = "<group>";
+		};
+		53114A7C2912B00300390C9D /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				53114A7D2912B05F00390C9D /* Api */,
+				53114A782912A3D700390C9D /* Http */,
+				53114A6C29129EF000390C9D /* Repository */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		53114A7D2912B05F00390C9D /* Api */ = {
+			isa = PBXGroup;
+			children = (
+				53114A922912BE5B00390C9D /* MovieApi.swift */,
+			);
+			path = Api;
+			sourceTree = "<group>";
+		};
+		53114A802912B3A600390C9D /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				53114A8D2912B7FB00390C9D /* Repository */,
+				53114A832912B4DD00390C9D /* Context */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		53114A832912B4DD00390C9D /* Context */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Context;
+			sourceTree = "<group>";
+		};
+		53114A8D2912B7FB00390C9D /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repository;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -331,8 +377,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53114A7F2912B07600390C9D /* ApiContract.swift in Sources */,
 				53114A3929129DED00390C9D /* ContentView.swift in Sources */,
 				53114A6E29129F0C00390C9D /* MovieApiRepository.swift in Sources */,
+				53114A932912BE5B00390C9D /* MovieApi.swift in Sources */,
 				53114A732912A09600390C9D /* Movie.swift in Sources */,
 				53114A7A2912A4DF00390C9D /* HttpContract.swift in Sources */,
 				53114A3729129DED00390C9D /* MovieDBApp.swift in Sources */,

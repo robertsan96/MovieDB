@@ -18,15 +18,12 @@ struct ContentView: View {
         .onAppear {
             Task {
                 let http = Http()
-                let url = "https://api.themoviedb.org/3/movie/now_playing"
-                let params: [URLQueryItem] = [
-                URLQueryItem(name: "api_key", value: "abfabb9de9dc58bb436d38f97ce882bc")
-                ]
-                let result = await http.get(url: url, params: params)
-                switch result {
-                case .success(let httpResponse):
-                    let strResponse = String(data: httpResponse.data, encoding: .utf8)
-                    print(strResponse)
+                let repo = MovieApiRepository(http: http, apiToken: "abfabb9de9dc58bb436d38f97ce882bc")
+                
+                let data = await repo.getPaginatedNowPlayingMovies()
+                switch data {
+                case .success(let success):
+                    print(success.results)
                 case .failure(let failure):
                     print(failure)
                 }

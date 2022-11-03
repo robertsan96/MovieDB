@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct MainTabBarView: View {
-
+    
     @EnvironmentObject var appState: AppState
-    @State public var tabViewSelection: AppScreen = .search
+    @State public var tabViewSelection: AppScreen = .home
     
     @StateObject var homeScreenViewModel = HomeScreenViewModel()
     @StateObject var searchScreenViewModel = SearchScreenViewModel()
@@ -34,18 +34,9 @@ struct MainTabBarView: View {
     
     private func favoritesView() -> some View {
         NavigationView {
-            Text("Favorites")
+            FavoriteScreenView()
                 .navigationTitle(AppScreen.favorites.title)
                 .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button {
-                            appState.isShowingCustomSheet.toggle()
-                        } label: {
-                            Image("ic_sort")
-                        }
-                    }
-                }
         }
         .tabItem { getLabel(for: .favorites) }
         .tag(AppScreen.favorites)
@@ -118,7 +109,7 @@ struct MainTabBarView: View {
                         .background(Color.white)
                         .cornerRadius(10)
                     }
-
+                    
                 }
         }
         .tabItem { getLabel(for: .search) }
@@ -170,7 +161,7 @@ struct MainTabBarView_Previews: PreviewProvider {
     static var previews: some View {
         MainTabBarView(homeScreenViewModel: HomeScreenViewModel(movieRepository: MovieApiRepository(http: Http(), apiToken: Constants.Api.apiKey),
                                                                 sortStrategy: .noSort))
-            .environmentObject(AppState())
-            .preferredColorScheme(.dark)
+        .environmentObject(AppState())
+        .preferredColorScheme(.dark)
     }
 }

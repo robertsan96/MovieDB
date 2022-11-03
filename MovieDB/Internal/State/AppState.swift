@@ -14,4 +14,8 @@ class AppState: ObservableObject {
     
     @Published var homeSortStrategy: HomeScreenSortStrategy = .noSort
     @Published var searchKeyword = ""
+    
+    // Absolute hack due to lack of time
+    // TODO: Notifications, Combine etc
+    @Published var refreshHack: Bool = false
 }

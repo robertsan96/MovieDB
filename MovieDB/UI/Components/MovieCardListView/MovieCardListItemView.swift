@@ -10,9 +10,7 @@ import SwiftUI
 struct MovieCardListItem: View {
     
     @StateObject var viewModel: MovieCardListItemViewModel
-    
-    // Pure hack for quick view reload after stored to favs
-    @State var refresh: Bool = false
+    @EnvironmentObject var appState: AppState
     
     var body: some View {
         VStack(spacing: 0) {
@@ -48,7 +46,7 @@ struct MovieCardListItem: View {
                     } else {
                         UserDefaultsHandler.shared.setFavoriteMovie(movieId: viewModel.movie.id)
                     }
-                    refresh.toggle()
+                    appState.refreshHack.toggle()
                 } label: {
                     
                     Image(isMovieFavorite() ? "ic_add_to_favorites_red" : "ic_add_to_favorites_black")
@@ -56,7 +54,7 @@ struct MovieCardListItem: View {
                 Spacer()
                 
             }
-            .background(Color.clear.disabled(refresh))
+            .background(Color.clear.disabled(appState.refreshHack))
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .frame(height: 40)
         }

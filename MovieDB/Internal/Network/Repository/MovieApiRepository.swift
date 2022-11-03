@@ -63,4 +63,18 @@ final class MovieApiRepository: MovieContract {
             return .failure(err)
         }
     }
+    
+    func getMoviePosterImage(fileName: String) async -> Result<Data, Error> {
+        let apiTokenQueryParam = URLQueryItem(name: "api_key", value: apiToken)
+        let api = MovieApi.getPosterImage
+        let result = await self.http.get(url: api.baseUrl + api.endpoint + fileName,
+                                         params: [apiTokenQueryParam],
+                                         headers: nil)
+        switch result {
+        case .success(let httpResponse):
+            return .success(httpResponse.data)
+        case .failure(let err):
+            return .failure(err)
+        }
+    }
 }

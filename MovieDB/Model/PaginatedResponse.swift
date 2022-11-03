@@ -19,3 +19,10 @@ struct PaginatedResponse<T: Codable>: Identifiable, Codable {
     
     let results: [T]
 }
+
+extension PaginatedResponse where T: Codable {
+    
+    static var blankPage: PaginatedResponse<T> {
+        PaginatedResponse(page: 0, totalPages: 0, totalResults: 0, results: [])
+    }
+}

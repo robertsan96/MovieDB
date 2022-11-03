@@ -17,6 +17,8 @@ protocol MovieContract {
     func getPaginatedPopularMovies() async -> Result<PaginatedResponse<Movie>, Error>
     func getPaginatedTopRatedMovies() async -> Result<PaginatedResponse<Movie>, Error>
     func getPaginatedUpcomingMovies() async -> Result<PaginatedResponse<Movie>, Error>
+    
+    func getMoviePosterImage(fileName: String) async -> Result<Data, Error>
 }
 
 extension MovieContract {
@@ -34,6 +36,10 @@ extension MovieContract {
     }
     
     func getPaginatedUpcomingMovies() async -> Result<PaginatedResponse<Movie>, Error> {
+        return .failure(MovieContractError.notImplemented)
+    }
+    
+    func getMoviePosterImage(fileName: String) async -> Result<Data, Error> {
         return .failure(MovieContractError.notImplemented)
     }
 }

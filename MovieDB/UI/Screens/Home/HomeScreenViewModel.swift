@@ -111,15 +111,13 @@ extension HomeScreenViewModel {
             switch result {
             case .success(let paginatedResponse):
                 self.paginatedResponse = paginatedResponse
-            case .failure(let failure):
+            case .failure:
                 self.paginatedResponse = .blankPage
             }
             
             self.isLoading = false
         }
     }
-    
-    
 }
 
 enum HomeScreenMenuElement: Int {

@@ -11,6 +11,9 @@ struct MovieCardListItem: View {
     
     @StateObject var viewModel: MovieCardListItemViewModel
     
+    // Pure hack for quick view reload after stored to favs
+    @State var refresh: Bool = false
+    
     var body: some View {
         VStack(spacing: 0) {
             ZStack {
@@ -40,17 +43,28 @@ struct MovieCardListItem: View {
                     .foregroundColor(.appSecondaryTextColor)
                 Spacer()
                 Button {
-                    
+                    if isMovieFavorite() {
+                        UserDefaultsHandler.shared.removeFavoriteMovie(movieId: viewModel.movie.id)
+                    } else {
+                        UserDefaultsHandler.shared.setFavoriteMovie(movieId: viewModel.movie.id)
+                    }
+                    refresh.toggle()
                 } label: {
-                    Image("ic_add_to_favorites_red")
+                    
+                    Image(isMovieFavorite() ? "ic_add_to_favorites_red" : "ic_add_to_favorites_black")
                 }
                 Spacer()
                 
             }
+            .background(Color.clear.disabled(refresh))
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .frame(height: 40)
         }
         .background(Color.white)
         .cornerRadius(6)
+    }
+    
+    private func isMovieFavorite() -> Bool {
+        UserDefaultsHandler.shared.getFavoriteMovieIds().first { $0 == viewModel.movie.id } != nil
     }
 }

@@ -22,5 +22,6 @@ struct ContentView_Previews: PreviewProvider {
             .onAppear {
                 setupGlobalAppearance()
             }
+            .preferredColorScheme(.dark)
     }
 }

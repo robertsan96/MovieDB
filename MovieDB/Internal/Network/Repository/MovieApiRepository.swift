@@ -111,4 +111,23 @@ final class MovieApiRepository: MovieContract {
         }
     }
     
+    func searchMovies(query: String) async -> Result<PaginatedResponse<Movie>, Error> {
+        let api = MovieApi.searchMovie
+        let searchQuery = URLQueryItem(name: "query", value: query)
+        let result = await self.http.get(url: api.baseUrl + api.endpoint,
+                                         params: [apiTokenQueryParam, searchQuery],
+                                         headers: nil)
+        switch result {
+        case .success(let httpResponse):
+            do {
+                let decodedData = try decoder.decode(PaginatedResponse<Movie>.self, from: httpResponse.data)
+                return .success(decodedData)
+            } catch let err {
+                return .failure(err)
+            }
+        case .failure(let err):
+            return .failure(err)
+        }
+    }
+    
 }

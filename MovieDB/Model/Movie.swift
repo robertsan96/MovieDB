@@ -64,7 +64,7 @@ extension Movie {
               posterPath: "/wRKHUqYGrp3PO91mZVQ18xlwYzW.jpg",
               voteAverage: 7.2,
               releaseDate: "2022-10-06"),
-        Movie(id: 123,
+        Movie(id: 1223,
               title: "Terrifier",
               overview: "After being resurrected by a sinister entity, Art the Clown returns to Miles County where he must hunt down and destroy a teenage girl and her younger brother on Halloween night.  As the body count rises, the siblings fight to stay alive while uncovering the true nature of Art's evil intent.",
               tagline: "",

@@ -30,7 +30,7 @@ class MovieCardListItemViewModel: ObservableObject {
     
     convenience init(movie: Movie) {
         let http = Http()
-        let movieRepository = MovieApiRepository(http: http, apiToken: "abfabb9de9dc58bb436d38f97ce882bc")
+        let movieRepository = MovieApiRepository(http: http, apiToken: Constants.Api.apiKey)
         
         self.init(movie: movie, movieRepository: movieRepository)
     }

@@ -18,6 +18,8 @@ enum MovieApi: ApiContract {
     case getPosterImage
     case getBackdropImage
     
+    case searchMovie
+    
     var endpoint: String {
         let baseMovieEndpoint = "/movie"
         switch self {
@@ -29,6 +31,8 @@ enum MovieApi: ApiContract {
         case .getMovieDetails(let id): return baseMovieEndpoint + "/\(String(id))"
         case .getPosterImage: return "/t/p/w500" // TODO: Support different sizes
         case .getBackdropImage: return "/t/p/w500" // TODO: Support different sizes
+            
+        case .searchMovie: return "/search/movie"
         }
     }
     

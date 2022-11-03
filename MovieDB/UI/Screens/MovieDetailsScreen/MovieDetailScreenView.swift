@@ -12,24 +12,27 @@ struct MovieDetailScreenView: View {
     @StateObject var viewModel = MovieDetailScreenViewModel(movieId: 436270)
     
     var body: some View {
-        VStack(spacing: 0) {
-            if viewModel.movie != nil {
-                movieBackdrop()
-                movieMetadata()
-                    .padding(10)
-                Rectangle()
-                    .frame(height: 2)
-                    .padding(10)
-                    .foregroundColor(Color.appSecondary)
-                Text(viewModel.movie?.overview ?? "")
-                    .font(.appFont(weight: .semibold, size: 14))
-                    .foregroundColor(.appSecondaryTextColor)
-                    .padding(10)
-                Spacer()
-            } else {
-                noMovieView()
+        ScrollView {
+            VStack(spacing: 0) {
+                if viewModel.movie != nil {
+                    movieBackdrop()
+                    movieMetadata()
+                        .padding(10)
+                    Rectangle()
+                        .frame(height: 2)
+                        .padding(10)
+                        .foregroundColor(Color.appSecondary)
+                    Text(viewModel.movie?.overview ?? "")
+                        .font(.appFont(weight: .semibold, size: 14))
+                        .foregroundColor(.appSecondaryTextColor)
+                        .padding(10)
+                    Spacer()
+                } else {
+                    noMovieView()
+                }
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.white)
     }
     
@@ -82,9 +85,9 @@ struct MovieDetailScreenView: View {
     
     private func noMovieView() -> some View {
         if viewModel.isLoading {
-            return Text("Loading..")
+            return Text("Loading..").foregroundColor(.appSecondaryTextColor)
         } else {
-            return Text("Failed loading...")
+            return Text("Failed loading...").foregroundColor(.appSecondaryTextColor)
         }
     }
     

@@ -10,7 +10,8 @@ import Foundation
 class AppState: ObservableObject {
     
     @Published var customSheetActions: [CustomActionSheetAction] = []
-    @Published var isShowingCustomSheet: Bool = false
+    @Published var isShowingCustomSheet = false
     
     @Published var homeSortStrategy: HomeScreenSortStrategy = .noSort
+    @Published var searchKeyword = ""
 }

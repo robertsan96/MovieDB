@@ -21,6 +21,8 @@ protocol MovieContract {
     func getMovieDetails(using id: Int) async -> Result<Movie, Error>
     func getMoviePosterImage(fileName: String) async -> Result<Data, Error>
     func getMovieBackdropImage(fileName: String) async -> Result<Data, Error>
+    
+    func searchMovies(query: String) async -> Result<PaginatedResponse<Movie>, Error>
 }
 
 extension MovieContract {
@@ -50,6 +52,10 @@ extension MovieContract {
     }
     
     func getMovieDetails(using id: Int) async -> Result<Data, Error> {
+        return .failure(MovieContractError.notImplemented)
+    }
+    
+    func searchMovies(query: String) async -> Result<PaginatedResponse<Movie>, Error> {
         return .failure(MovieContractError.notImplemented)
     }
 }

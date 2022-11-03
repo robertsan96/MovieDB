@@ -11,6 +11,7 @@ struct HomeScreenView: View {
     
     @ObservedObject var viewModel: HomeScreenViewModel
     @EnvironmentObject var appState: AppState
+    
     var body: some View {
         VStack(spacing: 0) {
             HorizontalTabView(menuItems: viewModel.menuElements,

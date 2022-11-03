@@ -18,6 +18,8 @@ final class MovieApiRepository: MovieContract {
     private let apiToken: String
     private let decoder: JSONDecoder
     
+    private var apiTokenQueryParam: URLQueryItem { .init(name: "api_key", value: apiToken) }
+    
     init(http: HttpContract, apiToken: String, decoder: JSONDecoder) {
         self.http = http
         self.apiToken = apiToken
@@ -47,7 +49,6 @@ final class MovieApiRepository: MovieContract {
     }
     
     private func getMovies(api: MovieApi) async -> Result<PaginatedResponse<Movie>, Error> {
-        let apiTokenQueryParam = URLQueryItem(name: "api_key", value: apiToken)
         let result = await self.http.get(url: api.baseUrl + api.endpoint,
                                          params: [apiTokenQueryParam],
                                          headers: nil)
@@ -64,8 +65,26 @@ final class MovieApiRepository: MovieContract {
         }
     }
     
+    func getMovieDetails(using id: Int) async -> Result<Movie, Error> {
+        let api = MovieApi.getMovieDetails(id: id)
+        let result = await self.http.get(url: api.baseUrl + api.endpoint,
+                                         params: [apiTokenQueryParam],
+                                         headers: nil)
+        switch result {
+        case .success(let httpResponse):
+            do {
+                let decodedData = try decoder.decode(Movie.self, from: httpResponse.data)
+                return .success(decodedData)
+            } catch let err {
+                print(err)
+                return .failure(err)
+            }
+        case .failure(let err):
+            return .failure(err)
+        }
+    }
+    
     func getMoviePosterImage(fileName: String) async -> Result<Data, Error> {
-        let apiTokenQueryParam = URLQueryItem(name: "api_key", value: apiToken)
         let api = MovieApi.getPosterImage
         let result = await self.http.get(url: api.baseUrl + api.endpoint + fileName,
                                          params: [apiTokenQueryParam],
@@ -77,4 +96,19 @@ final class MovieApiRepository: MovieContract {
             return .failure(err)
         }
     }
+
+    /// Same logic as poster image fetching, duplicating with separation of concerns in mind...
+    func getMovieBackdropImage(fileName: String) async -> Result<Data, Error> {
+        let api = MovieApi.getBackdropImage
+        let result = await self.http.get(url: api.baseUrl + api.endpoint + fileName,
+                                         params: [apiTokenQueryParam],
+                                         headers: nil)
+        switch result {
+        case .success(let httpResponse):
+            return .success(httpResponse.data)
+        case .failure(let err):
+            return .failure(err)
+        }
+    }
+    
 }

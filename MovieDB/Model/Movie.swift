@@ -13,17 +13,27 @@ struct Movie: Identifiable, Codable {
     
     let title: String?
     let overview: String?
-    let genreIds: [Int]
+    let tagline: String?
+    
+    let genreIds: [Int]?
+    var genres: [MovieGenre]?
     
     let backdropPath: String?
     let posterPath: String?
     
     let voteAverage: Double?
+    var voteCount: Int?
     let releaseDate: String?
     
     // Sorting helpers
     var voteAverageOrZero: Double { voteAverage ?? 0 }
     var releaseDateOrNow: Date { Date.yearFromServerFormat(releaseDate) }
+}
+
+struct MovieGenre: Identifiable, Codable {
+    
+    let id: Int
+    let name: String
 }
 
 extension Movie {
@@ -32,6 +42,7 @@ extension Movie {
         Movie(id: 0,
               title: "",
               overview: "",
+              tagline: "",
               genreIds: [],
               backdropPath: "",
               posterPath: "",
@@ -47,6 +58,7 @@ extension Movie {
         Movie(id: 123,
               title: "Terrifier",
               overview: "After being resurrected by a sinister entity, Art the Clown returns to Miles County where he must hunt down and destroy a teenage girl and her younger brother on Halloween night.  As the body count rises, the siblings fight to stay alive while uncovering the true nature of Art's evil intent.",
+              tagline: "",
               genreIds: [27, 53],
               backdropPath: "/y5Z0WesTjvn59jP6yo459eUsbli.jpg",
               posterPath: "/wRKHUqYGrp3PO91mZVQ18xlwYzW.jpg",
@@ -55,6 +67,7 @@ extension Movie {
         Movie(id: 123,
               title: "Terrifier",
               overview: "After being resurrected by a sinister entity, Art the Clown returns to Miles County where he must hunt down and destroy a teenage girl and her younger brother on Halloween night.  As the body count rises, the siblings fight to stay alive while uncovering the true nature of Art's evil intent.",
+              tagline: "",
               genreIds: [27, 53],
               backdropPath: "/y5Z0WesTjvn59jP6yo459eUsbli.jpg",
               posterPath: "/wRKHUqYGrp3PO91mZVQ18xlwYzW.jpg",
@@ -63,6 +76,7 @@ extension Movie {
         Movie(id: 123,
               title: "Terrifier",
               overview: "After being resurrected by a sinister entity, Art the Clown returns to Miles County where he must hunt down and destroy a teenage girl and her younger brother on Halloween night.  As the body count rises, the siblings fight to stay alive while uncovering the true nature of Art's evil intent.",
+              tagline: "",
               genreIds: [27, 53],
               backdropPath: "/y5Z0WesTjvn59jP6yo459eUsbli.jpg",
               posterPath: "/wRKHUqYGrp3PO91mZVQ18xlwYzW.jpg",
@@ -71,6 +85,7 @@ extension Movie {
         Movie(id: 123,
               title: "Terrifier",
               overview: "After being resurrected by a sinister entity, Art the Clown returns to Miles County where he must hunt down and destroy a teenage girl and her younger brother on Halloween night.  As the body count rises, the siblings fight to stay alive while uncovering the true nature of Art's evil intent.",
+              tagline: "",
               genreIds: [27, 53],
               backdropPath: "/y5Z0WesTjvn59jP6yo459eUsbli.jpg",
               posterPath: "/wRKHUqYGrp3PO91mZVQ18xlwYzW.jpg",

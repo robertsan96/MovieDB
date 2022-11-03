@@ -10,7 +10,7 @@ import Foundation
 class AppState: ObservableObject {
     
     @Published var customSheetActions: [CustomActionSheetAction] = []
-    @Published var isShowingCustomSheet: Bool = true
+    @Published var isShowingCustomSheet: Bool = false
     
     @Published var homeSortStrategy: HomeScreenSortStrategy = .noSort
 }

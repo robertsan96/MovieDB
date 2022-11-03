@@ -39,7 +39,12 @@ struct MovieCardListView: View {
         ScrollView(.vertical, showsIndicators: false) {
             LazyVGrid(columns: columns) {
                 ForEach(movies) { movie in
-                    MovieCardListItem(viewModel: MovieCardListItemViewModel(movie: movie))
+                    NavigationLink {
+                        MovieDetailScreenView(viewModel: MovieDetailScreenViewModel(movieId: movie.id))
+                            .navigationTitle(movie.title ?? "")
+                    } label: {
+                        MovieCardListItem(viewModel: MovieCardListItemViewModel(movie: movie))
+                    }
                 }
             }
         }

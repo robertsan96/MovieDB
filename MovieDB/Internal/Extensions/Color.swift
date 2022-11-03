@@ -14,4 +14,7 @@ extension Color {
     
     static let appPrimaryTextColor = Color("PrimaryTextColor")
     static let appSecondaryTextColor = Color("SecondaryTextColor")
+    static let appTernaryTextColor = Color("TernaryTextColor")
+    
+    static let appPrimaryTagCapsuleColor = Color("PrimaryTagCapsuleColor")
 }

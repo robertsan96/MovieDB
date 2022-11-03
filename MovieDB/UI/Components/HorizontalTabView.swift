@@ -60,6 +60,8 @@ fileprivate struct HorizontalTabViewElement: View {
 
 // MARK: Previews
 
+/// We need a wrapper in order to preview as close as possible
+/// to a real device via canvas (State management)
 struct HorinzontalTabView_Previews_Wrapper: View {
     
     @State var menuItems = [
@@ -77,7 +79,6 @@ struct HorinzontalTabView_Previews_Wrapper: View {
             } label: {
                 Text("Change Selection")
             }
-
             HorizontalTabView(menuItems: menuItems, selected: $selectedItem)
         }
     }

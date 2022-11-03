@@ -17,14 +17,11 @@ class MovieDetailScreenViewModel: ObservableObject {
     
     private var fetchMovieInformationTask: Task<(), Never>?
     private var fetchMoviePhotosTask: Task<(), Never>?
-    
     private let movieRepository: MovieContract
-    
-    // As per requirement: max 2 genres.. And I just built that beautiful
-    // scrollable view :( 
+
     var movieGenres: [MovieGenre] {
         guard let genres =  movie?.genres, genres.count > 1 else { return [] }
-        return Array(genres.prefix(upTo: 2))
+        return Array(genres.prefix(upTo: 2)) // Requirement alert! Maximum 2 elements.
     }
     
     init(movieId: Int, movieRepository: MovieContract) {

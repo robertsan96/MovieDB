@@ -25,10 +25,6 @@ struct FavoriteScreenView: View {
                     Text("No favorites, yet.")
                         .font(.appFont(weight: .semibold, size: 22))
                         .foregroundColor(.appSecondaryTextColor)
-                    Text("Disclaimer: if you don't see your favorite movie here, it's because i am checking for the popular movies list only due to the lack of time (instead of fetching a list of ids stored on the device). \n\n Anyway, your favorites are safely stored on the device even though they don't show up here. 😅")
-                        .multilineTextAlignment(.center)
-                        .foregroundColor(.appSecondaryTextColor)
-                        .padding()
                     Spacer()
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)

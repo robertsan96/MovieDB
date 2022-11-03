@@ -19,9 +19,9 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
             .environmentObject(AppState())
+            .preferredColorScheme(.dark)
             .onAppear {
                 setupGlobalAppearance()
             }
-            .preferredColorScheme(.dark)
     }
 }

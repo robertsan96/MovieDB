@@ -9,7 +9,8 @@ import SwiftUI
 
 struct MovieDetailScreenView: View {
     
-    @StateObject var viewModel = MovieDetailScreenViewModel(movieId: 436270)
+    @StateObject var viewModel: MovieDetailScreenViewModel
+    @EnvironmentObject var appState: AppState
     
     var body: some View {
         ScrollView {
@@ -25,6 +26,8 @@ struct MovieDetailScreenView: View {
                     Text(viewModel.movie?.overview ?? "")
                         .font(.appFont(weight: .semibold, size: 14))
                         .foregroundColor(.appSecondaryTextColor)
+                        .padding(10)
+                    favoriteButton()
                         .padding(10)
                     Spacer()
                 } else {
@@ -149,10 +152,38 @@ struct MovieDetailScreenView: View {
             }
         }
     }
+    
+    private func favoriteButton() -> some View {
+        Button {
+            if isMovieFavorite() {
+                UserDefaultsHandler.shared.removeFavoriteMovie(movieId: viewModel.movie?.id ?? 0)
+            } else {
+                UserDefaultsHandler.shared.setFavoriteMovie(movieId: viewModel.movie?.id ?? 0)
+            }
+            appState.refreshHack = UUID()
+        } label: {
+            HStack {
+                Image(isMovieFavorite() ? "ic_add_to_favorites_red" : "ic_add_to_favorites_black")
+                    .renderingMode(.template)
+                    .foregroundColor(isMovieFavorite() ? .white : .red)
+                Text(isMovieFavorite() ? "It's your fav!" : "Add to favorites")
+                    .font(.appFont(weight: .bold, size: 14))
+                    .foregroundColor(isMovieFavorite() ? .white : .appSecondaryTextColor)
+            }
+            .padding()
+            .background(isMovieFavorite() ? Color.red : .white)
+            .clipShape(Capsule())
+        }
+    }
+    
+    // TODO: Less calls to this method, store the result!
+    private func isMovieFavorite() -> Bool {
+        UserDefaultsHandler.shared.getFavoriteMovieIds().first { $0 == viewModel.movie?.id } != nil
+    }
 }
 
 struct MovieDetailScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        MovieDetailScreenView()
+        MovieDetailScreenView(viewModel: MovieDetailScreenViewModel(movieId: 901944))
     }
 }

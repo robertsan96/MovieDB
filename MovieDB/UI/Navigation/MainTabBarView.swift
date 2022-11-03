@@ -10,21 +10,20 @@ import SwiftUI
 struct MainTabBarView: View {
     
     @EnvironmentObject var appState: AppState
-    @State public var tabViewSelection: AppScreen = .home
     
     @StateObject var homeScreenViewModel = HomeScreenViewModel()
     @StateObject var searchScreenViewModel = SearchScreenViewModel()
     
+    @State public var tabViewSelection: AppScreen = .home
+    
     var body: some View {
         ZStack {
             TabView(selection: $tabViewSelection) {
-                
                 favoritesView()
                 homeView()
                 searchView()
             }
             .accentColor(.white.opacity(1))
-            
             homeSortActionSheet()
         }
         .onChange(of: appState.homeSortStrategy) { homeSortStrategy in
@@ -38,7 +37,7 @@ struct MainTabBarView: View {
                 .navigationTitle(AppScreen.favorites.title)
                 .navigationBarTitleDisplayMode(.inline)
         }
-        .tabItem { getLabel(for: .favorites) }
+        .tabItem { getTabLabel(for: .favorites) }
         .tag(AppScreen.favorites)
     }
     
@@ -57,7 +56,7 @@ struct MainTabBarView: View {
                     }
                 }
         }
-        .tabItem { getLabel(for: .home) }
+        .tabItem { getTabLabel(for: .home) }
         .tag(AppScreen.home)
     }
     
@@ -83,8 +82,8 @@ struct MainTabBarView: View {
                                         searchScreenViewModel.setSearchKeyword(appState.searchKeyword)
                                     }
                             } else {
-                                // I could use a UIKit coordinator for the return key...
-                                // Not enough time... :(
+                                // TODO: I could use a UIKit coordinator for the return key...
+                                // Currently not enough time!
                                 TextField("", text: $appState.searchKeyword)
                                     .font(.appFont(weight: .semibold, size: 14))
                                     .foregroundColor(.appSecondaryTextColor)
@@ -109,10 +108,9 @@ struct MainTabBarView: View {
                         .background(Color.white)
                         .cornerRadius(10)
                     }
-                    
                 }
         }
-        .tabItem { getLabel(for: .search) }
+        .tabItem { getTabLabel(for: .search) }
         .tag(AppScreen.search)
     }
     
@@ -143,24 +141,25 @@ struct MainTabBarView: View {
         .opacity(appState.isShowingCustomSheet ? 1 : 0)
     }
     
-    private func getIconName(for tabItem: AppScreen) -> String {
+    private func getTabIconName(for tabItem: AppScreen) -> String {
         tabViewSelection == tabItem ? tabItem.iconPress : tabItem.icon
     }
     
-    private func getLabel(for tabItem: AppScreen) -> some View {
+    private func getTabLabel(for tabItem: AppScreen) -> some View {
         Label {
             Text(tabItem.title)
                 .foregroundColor(.green)
         } icon: {
-            Image(getIconName(for: tabItem))
+            Image(getTabIconName(for: tabItem))
         }
     }
 }
 
 struct MainTabBarView_Previews: PreviewProvider {
     static var previews: some View {
-        MainTabBarView(homeScreenViewModel: HomeScreenViewModel(movieRepository: MovieApiRepository(http: Http(), apiToken: Constants.Api.apiKey),
-                                                                sortStrategy: .noSort))
+        MainTabBarView(homeScreenViewModel:
+                        HomeScreenViewModel(movieRepository: MovieApiRepository(http: Http(), apiToken: Constants.Api.apiKey),
+                                            sortStrategy: .noSort))
         .environmentObject(AppState())
         .preferredColorScheme(.dark)
     }

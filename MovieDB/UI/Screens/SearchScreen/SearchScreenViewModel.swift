@@ -14,7 +14,6 @@ class SearchScreenViewModel: ObservableObject {
     @Published var searchKeyword: String = ""
     
     private let movieRepository: MovieContract
-    
     private var cancellables: Set<AnyCancellable> = Set()
     private var fetchMoviesTask: Task<(), Never>?
     

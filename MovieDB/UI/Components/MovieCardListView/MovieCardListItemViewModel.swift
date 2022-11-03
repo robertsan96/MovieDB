@@ -65,7 +65,6 @@ extension MovieCardListItemViewModel {
                     self.posterImage = image
                 }
             case .failure: break
-                //
             }
             
         }

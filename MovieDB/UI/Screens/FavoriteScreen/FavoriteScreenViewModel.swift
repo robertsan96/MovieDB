@@ -11,10 +11,8 @@ import Combine
 class FavoriteScreenViewModel: ObservableObject {
     
     @Published var movies: [Movie] = []
-    @Published var searchKeyword: String = ""
     
     private let movieRepository: MovieContract
-    
     private var cancellables: Set<AnyCancellable> = Set()
     private var fetchMoviesTask: Task<(), Never>?
     
@@ -51,15 +49,31 @@ extension FavoriteScreenViewModel {
         fetchMoviesTask?.cancel()
         fetchMoviesTask = Task { [weak self] in
             guard let self = self else { return }
-            let result = await self.movieRepository.getPaginatedPopularMovies()
-
-            switch result {
-            case .success(let movies):
-                DispatchQueue.main.async {
-                    self.movies = movies.results
+            
+            let favoriteMovies = UserDefaultsHandler.shared.getFavoriteMovieIds()
+            let fetchedMovies = await withTaskGroup(of: Movie?.self) { group in
+                
+                var movies: [Movie] = []
+                for favoriteMovie in favoriteMovies {
+                    group.addTask {
+                        let result = await self.movieRepository.getMovieDetails(using: favoriteMovie)
+                        switch result {
+                        case .success(let movie): return movie
+                        case .failure: return nil
+                        }
+                    }
                 }
-            case .failure(let err):
-                print(err)
+                
+                for await taskResult in group {
+                    if taskResult != nil {
+                        movies.append(taskResult!)
+                    }
+                }
+                
+                return movies
+            }
+            DispatchQueue.main.async {
+                self.movies = fetchedMovies
             }
         }
     }

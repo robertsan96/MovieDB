@@ -48,7 +48,6 @@ struct MovieCardListItem: View {
                     }
                     appState.refreshHack = UUID()
                 } label: {
-                    
                     Image(isMovieFavorite() ? "ic_add_to_favorites_red" : "ic_add_to_favorites_black")
                 }
                 Spacer()

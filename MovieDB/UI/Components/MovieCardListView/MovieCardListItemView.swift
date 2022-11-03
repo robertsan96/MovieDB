@@ -46,7 +46,7 @@ struct MovieCardListItem: View {
                     } else {
                         UserDefaultsHandler.shared.setFavoriteMovie(movieId: viewModel.movie.id)
                     }
-                    appState.refreshHack.toggle()
+                    appState.refreshHack = UUID()
                 } label: {
                     
                     Image(isMovieFavorite() ? "ic_add_to_favorites_red" : "ic_add_to_favorites_black")
@@ -54,7 +54,7 @@ struct MovieCardListItem: View {
                 Spacer()
                 
             }
-            .background(Color.clear.disabled(appState.refreshHack))
+            .id(appState.refreshHack)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .frame(height: 40)
         }

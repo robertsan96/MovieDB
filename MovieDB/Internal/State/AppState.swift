@@ -17,5 +17,5 @@ class AppState: ObservableObject {
     
     // Absolute hack due to lack of time
     // TODO: Notifications, Combine etc
-    @Published var refreshHack: Bool = false
+    @Published var refreshHack: UUID = UUID()
 }

@@ -29,6 +29,7 @@ class UserDefaultsHandler {
         favoriteMovies.append(movieId)
         
         userDefaults.set(favoriteMovies, forKey: favoriteMoviesKey)
+        userDefaults.synchronize()
     }
     
     func removeFavoriteMovie(movieId: Int) {
@@ -37,5 +38,6 @@ class UserDefaultsHandler {
         let favoriteMovies = getFavoriteMovieIds().filter { $0 != movieId }
         
         userDefaults.set(favoriteMovies, forKey: favoriteMoviesKey)
+        userDefaults.synchronize()
     }
 }

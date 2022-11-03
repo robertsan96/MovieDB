@@ -9,16 +9,15 @@ import SwiftUI
 
 struct FavoriteScreenView: View {
     
-    @StateObject var viewModel = FavoriteScreenViewModel()
+    @ObservedObject var viewModel = FavoriteScreenViewModel()
     @EnvironmentObject var appState: AppState
-    
-    @State private var animationAmount: CGFloat = 1
     
     var body: some View {
         VStack(spacing: 0) {
             if viewModel.filteredMovies.count > 0 {
                 MovieCardListView(movies: viewModel.filteredMovies,
                                   isLoading: false)
+                .id(appState.refreshHack)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             } else {
                 VStack {
@@ -26,24 +25,15 @@ struct FavoriteScreenView: View {
                     Text("No favorites, yet.")
                         .font(.appFont(weight: .semibold, size: 22))
                         .foregroundColor(.appSecondaryTextColor)
-                    Image("ic_add_to_favorites_red")
-                        .resizable()
-                        .frame(width: 25, height: 25)
-                        .scaleEffect(animationAmount)
-                        .animation(
-                            .linear(duration: 0.1)
-                            .delay(0.2)
-                            .repeatForever(autoreverses: true),
-                            value: animationAmount)
-                        .onAppear {
-                            animationAmount = 1.2
-                        }
+                    Text("Disclaimer: if you don't see your favorite movie here, it's because i am checking for the popular movies list only due to the lack of time (instead of fetching a list of ids stored on the device). \n\n Anyway, your favorites are safely stored on the device even though they don't show up here. 😅")
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(.appSecondaryTextColor)
+                        .padding()
                     Spacer()
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
         }
-        .background(Color.clear.disabled(appState.refreshHack))
         .background(Color.appSecondary)
     }
 }

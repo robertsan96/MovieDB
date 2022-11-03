@@ -19,20 +19,49 @@ import Combine
     ]
     @Published private(set) var paginatedResponse: PaginatedResponse<Movie> = .blankPage
     @Published private(set) var isLoading = false
+    @Published private(set) var sortStrategy: HomeScreenSortStrategy
+    
+    var sortedMovies: [Movie] {
+        let movies = paginatedResponse.results
+        switch sortStrategy {
+        case .noSort: return movies
+        case .ratingAscending: return movies.sorted { $0.voteAverageOrZero < $1.voteAverageOrZero }
+        case .ratingDescending: return movies.sorted { $0.voteAverageOrZero > $1.voteAverageOrZero }
+        case .releaseDateAscending:
+            return movies.sorted { $0.releaseDateOrNow.compare($1.releaseDateOrNow) == .orderedAscending }
+        case .releaseDateDescending:
+            return movies.sorted { $0.releaseDateOrNow.compare($1.releaseDateOrNow) == .orderedDescending }
+        }
+    }
     
     private var cancellables: Set<AnyCancellable> = Set()
     private var fetchMoviesTask: Task<(), Never>?
     
     private let movieRepository: MovieContract
     
-    init(movieRepository: MovieContract) {
+    init(movieRepository: MovieContract, sortStrategy: HomeScreenSortStrategy) {
         self.movieRepository = movieRepository
+        self.sortStrategy = sortStrategy
         
         initListeners()
     }
     
+    convenience init() {
+        
+        let http = Http()
+        let apiToken = Constants.Api.apiKey
+        let movieRepository = MovieApiRepository(http: http, apiToken: apiToken)
+        let sortStrategy = HomeScreenSortStrategy.noSort
+        
+        self.init(movieRepository: movieRepository, sortStrategy: sortStrategy)   
+    }
+    
     deinit {
         fetchMoviesTask?.cancel()
+    }
+    
+    func setSortStrategy(sortStrategy: HomeScreenSortStrategy) {
+        self.sortStrategy = sortStrategy
     }
 }
 
@@ -41,11 +70,20 @@ extension HomeScreenViewModel {
     
     func initListeners() {
         listenActiveMenuElementChange()
+        listenSortStrategyChange()
     }
     
     func listenActiveMenuElementChange() {
         $activeMenuElement
             .sink { [weak self] activeMenuElement in
+                self?.triggerFetchMoviesCall()
+            }
+            .store(in: &cancellables)
+    }
+    
+    func listenSortStrategyChange() {
+        $sortStrategy
+            .sink { [weak self] sortStrategy in
                 self?.triggerFetchMoviesCall()
             }
             .store(in: &cancellables)
@@ -99,4 +137,15 @@ enum HomeScreenMenuElement: Int {
         case .upcoming: return "Upcoming"
         }
     }
+}
+
+enum HomeScreenSortStrategy: Int {
+    
+    case noSort
+    
+    case ratingAscending
+    case ratingDescending
+    
+    case releaseDateAscending
+    case releaseDateDescending
 }

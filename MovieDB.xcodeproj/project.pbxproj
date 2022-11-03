@@ -22,10 +22,6 @@
 		53114A7A2912A4DF00390C9D /* HttpContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53114A792912A4DF00390C9D /* HttpContract.swift */; };
 		53114A7F2912B07600390C9D /* ApiContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53114A7E2912B07600390C9D /* ApiContract.swift */; };
 		53114A932912BE5B00390C9D /* MovieApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53114A922912BE5B00390C9D /* MovieApi.swift */; };
-		53114A982912CD3000390C9D /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53114A972912CD3000390C9D /* Store.swift */; };
-		53114A9A2912CDE100390C9D /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53114A992912CDE100390C9D /* Container.swift */; };
-		53114A9C2912CDFF00390C9D /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53114A9B2912CDFF00390C9D /* AppState.swift */; };
-		53114A9E2912D22F00390C9D /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53114A9D2912D22F00390C9D /* AppEnvironment.swift */; };
 		53114AA02912D3BC00390C9D /* HomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53114A9F2912D3BC00390C9D /* HomeScreenView.swift */; };
 		53114AB32912D47F00390C9D /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 53114AA72912D47F00390C9D /* OpenSans-SemiBold.ttf */; };
 		53114AB42912D47F00390C9D /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 53114AA82912D47F00390C9D /* OpenSans-Bold.ttf */; };
@@ -41,6 +37,9 @@
 		53CF651229131BFC00665CEC /* MovieCardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CF651129131BFC00665CEC /* MovieCardListView.swift */; };
 		53CF65172913289300665CEC /* MovieCardListItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CF65162913289300665CEC /* MovieCardListItemViewModel.swift */; };
 		53CF65192913348200665CEC /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CF65182913348200665CEC /* Date.swift */; };
+		53D587462913AD4D00098E72 /* MovieCardListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D587452913AD4D00098E72 /* MovieCardListItemView.swift */; };
+		53D587482913AE6200098E72 /* CustomActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D587472913AE6200098E72 /* CustomActionSheet.swift */; };
+		53D5874B2913BFBB00098E72 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D5874A2913BFBB00098E72 /* AppState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,10 +78,6 @@
 		53114A792912A4DF00390C9D /* HttpContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpContract.swift; sourceTree = "<group>"; };
 		53114A7E2912B07600390C9D /* ApiContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiContract.swift; sourceTree = "<group>"; };
 		53114A922912BE5B00390C9D /* MovieApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieApi.swift; sourceTree = "<group>"; };
-		53114A972912CD3000390C9D /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
-		53114A992912CDE100390C9D /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
-		53114A9B2912CDFF00390C9D /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
-		53114A9D2912D22F00390C9D /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
 		53114A9F2912D3BC00390C9D /* HomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenView.swift; sourceTree = "<group>"; };
 		53114AA72912D47F00390C9D /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiBold.ttf"; sourceTree = "<group>"; };
 		53114AA82912D47F00390C9D /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
@@ -99,6 +94,9 @@
 		53CF651129131BFC00665CEC /* MovieCardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCardListView.swift; sourceTree = "<group>"; };
 		53CF65162913289300665CEC /* MovieCardListItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCardListItemViewModel.swift; sourceTree = "<group>"; };
 		53CF65182913348200665CEC /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		53D587452913AD4D00098E72 /* MovieCardListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCardListItemView.swift; sourceTree = "<group>"; };
+		53D587472913AE6200098E72 /* CustomActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActionSheet.swift; sourceTree = "<group>"; };
+		53D5874A2913BFBB00098E72 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -298,10 +296,7 @@
 		53114A962912CD1A00390C9D /* State */ = {
 			isa = PBXGroup;
 			children = (
-				53114A972912CD3000390C9D /* Store.swift */,
-				53114A992912CDE100390C9D /* Container.swift */,
-				53114A9B2912CDFF00390C9D /* AppState.swift */,
-				53114A9D2912D22F00390C9D /* AppEnvironment.swift */,
+				53D5874A2913BFBB00098E72 /* AppState.swift */,
 			);
 			path = State;
 			sourceTree = "<group>";
@@ -355,6 +350,7 @@
 		53CF65092913005A00665CEC /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				53D587492913B14F00098E72 /* CustomActionSheet */,
 				53CF65152913287A00665CEC /* MovieCardListView */,
 				53CF650A2913007100665CEC /* HorizontalTabView.swift */,
 			);
@@ -366,8 +362,17 @@
 			children = (
 				53CF651129131BFC00665CEC /* MovieCardListView.swift */,
 				53CF65162913289300665CEC /* MovieCardListItemViewModel.swift */,
+				53D587452913AD4D00098E72 /* MovieCardListItemView.swift */,
 			);
 			path = MovieCardListView;
+			sourceTree = "<group>";
+		};
+		53D587492913B14F00098E72 /* CustomActionSheet */ = {
+			isa = PBXGroup;
+			children = (
+				53D587472913AE6200098E72 /* CustomActionSheet.swift */,
+			);
+			path = CustomActionSheet;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -509,25 +514,24 @@
 				53114ACC2912FE6200390C9D /* GlobalAppearance.swift in Sources */,
 				53114AC62912FB2D00390C9D /* Constants.swift in Sources */,
 				53CF650D291301CD00665CEC /* Font.swift in Sources */,
-				53114A9A2912CDE100390C9D /* Container.swift in Sources */,
 				53114A3929129DED00390C9D /* ContentView.swift in Sources */,
 				53114A6E29129F0C00390C9D /* MovieApiRepository.swift in Sources */,
 				53114AC12912D99F00390C9D /* Color.swift in Sources */,
 				53114A932912BE5B00390C9D /* MovieApi.swift in Sources */,
 				53114A732912A09600390C9D /* Movie.swift in Sources */,
 				53114A7A2912A4DF00390C9D /* HttpContract.swift in Sources */,
-				53114A9E2912D22F00390C9D /* AppEnvironment.swift in Sources */,
 				53CF651229131BFC00665CEC /* MovieCardListView.swift in Sources */,
-				53114A982912CD3000390C9D /* Store.swift in Sources */,
 				53CF650B2913007100665CEC /* HorizontalTabView.swift in Sources */,
 				53114A3729129DED00390C9D /* MovieDBApp.swift in Sources */,
 				53114A6529129E7C00390C9D /* MovieContract.swift in Sources */,
 				53114ABE2912D90B00390C9D /* MainTabBarView.swift in Sources */,
 				53114AA02912D3BC00390C9D /* HomeScreenView.swift in Sources */,
-				53114A9C2912CDFF00390C9D /* AppState.swift in Sources */,
 				53114ACA2912FC5300390C9D /* UIFont.swift in Sources */,
 				53114A712912A04E00390C9D /* PaginatedResponse.swift in Sources */,
 				53114A772912A1D400390C9D /* Http.swift in Sources */,
+				53D587462913AD4D00098E72 /* MovieCardListItemView.swift in Sources */,
+				53D5874B2913BFBB00098E72 /* AppState.swift in Sources */,
+				53D587482913AE6200098E72 /* CustomActionSheet.swift in Sources */,
 				53114AC42912E11F00390C9D /* AppScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

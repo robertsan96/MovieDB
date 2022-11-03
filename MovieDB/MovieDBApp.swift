@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct MovieDBApp: App {
+    
+    @StateObject var appState = AppState()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(appState)
                 .preferredColorScheme(.dark)
                 .onAppear {
                     setupGlobalAppearance()

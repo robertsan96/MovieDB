@@ -2,28 +2,15 @@
 //  AppState.swift
 //  MovieDB
 //
-//  Created by Robert Sandru on 02.11.2022.
+//  Created by Robert Sandru on 03.11.2022.
 //
 
 import Foundation
 
-struct AppState {
-
-    var movies: [Movie] = []
-}
-
-extension AppState: Equatable {
-
-    static func == (lhs: AppState, rhs: AppState) -> Bool {
-        lhs.movies.count == rhs.movies.count
-    }
-}
-
-#if DEBUG
-extension AppState {
+class AppState: ObservableObject {
     
-    static var preview: Self {
-        .init(movies: [])
-    }
+    @Published var customSheetActions: [CustomActionSheetAction] = []
+    @Published var isShowingCustomSheet: Bool = true
+    
+    @Published var homeSortStrategy: HomeScreenSortStrategy = .noSort
 }
-#endif
